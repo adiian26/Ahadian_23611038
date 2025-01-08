@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Helps the browser identify support for mobile applications -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Title on the browser tab -->
+    <title>WebGIS</title>
+    <!-- Leaflet CSS Library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <!-- Leaflet JavaScript Library -->
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <!-- Style for the fullscreen map display -->
+    <style>
+      html,
+      body,
+      #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HTML Block to display the map -->
+    <div id="map"></div>
+
+    <script>
+      // Initialize the map
+      var map = L.map("map").setView([-7.9, 110.45], 10); // lat, long, zoom
+
+      // Define basemap layers
+      var basemap0 = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      });
+
+      var Esri_WorldImagery = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+        attribution: "Cesar Fadil Kanz &copy; &mdash; 23611088 Satistika Universitas",
+      });
+
+      var OpenTopoMap = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+        maxZoom: 17,
+        attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a>',
+      });
+
+      // Add a default basemap to the map
+      Esri_WorldImagery.addTo(map);
+
+      // Control Layer for switching basemaps
+      var baseMaps = {
+        "Open Street Map": basemap0,
+        "Open Topo Map": OpenTopoMap,
+        "Esri World Imagery": Esri_WorldImagery,
+      };
+
+      var overlayMaps = {}; // Empty object for now, can add overlays later
+
+      var layerControl = L.control.layers(baseMaps, overlayMaps, { collapsed: false });
+      layerControl.addTo(map);
+
+      // Marker
+      var marker = L.marker([-7.804, 110.3645]); // you can change the coordinate
+      marker.bindPopup("<b>Hello ! </b> <br> Saya Pohon");
+      marker.addTo(map);
+      marker.openPopup();
+      marker.bindTooltip("Hallo <br> Saya <b> Adi </b> dan Adik saya <b> Ulhaq </b>");
+
+      // Custom marker
+      var customIcon1 = L.icon({
+        iconUrl: "https://www.freeiconspng.com/uploads/maps-icon-11.png",
+        iconSize: [40, 40],
+      });
+      var marker0 = L.marker([-7.6874832621204545, 110.41543590276083], { icon: customIcon1 });
+      marker0.addTo(map);
+
+      var markerApotek = L.marker([-7.864123899037251, 110.15618337619296]); // you can change the coordinate
+      markerApotek.bindPopup("Pharmacy Tri Farma");
+      markerApotek.addTo(map);
+      markerApotek.openPopup();
+      markerApotek.bindTooltip("45P4+4R Wates, Kulon Progo Regency, Special Region of Yogyakarta");
+
+      var markerApotek2 = L.marker([-7.843228358181918, 110.21884372818785]); // you can change the coordinate
+      markerApotek2.bindPopup("Apotek Sentolo Sehat");
+      markerApotek2.addTo(map);
+      markerApotek2.openPopup();
+      markerApotek2.bindTooltip("5639+F7J, Klebakan, Salamrejo, Kec. Sentolo, Kabupaten Kulon Progo, Daerah Istimewa Yogyakarta 55664");
+
+      var markerApotek3 = L.marker([-7.886826408573367, 110.10407924257021]); // you can change the coordinate
+      markerApotek3.bindPopup("Apotek Farmasindo");
+      markerApotek3.addTo(map);
+      markerApotek3.openPopup();
+      markerApotek3.bindTooltip("4463+2H Tawangsari, Kulon Progo Regency, Special Region of Yogyakarta");
+
+      var markerApotek4 = L.marker([-7.8936278580472266, 110.143561358087771]); // you can change the coordinate
+      markerApotek4.bindPopup("Apotek Achmad");
+      markerApotek4.addTo(map);
+      markerApotek4.openPopup();
+      markerApotek4.bindTooltip("444V+996, Jl. Bend. Pleret, Klopo Sepuluh, Bendungan, Kec. Wates, Kabupaten Kulon Progo, Daerah Istimewa Yogyakarta 55651");
+
+      var markerApotek5 = L.marker([-7.855538301864229, 110.1483678764986]); // you can change the coordinate
+      markerApotek5.bindPopup("Apotek Asy-Syifa");
+      markerApotek5.addTo(map);
+      markerApotek5.openPopup();
+      markerApotek5.bindTooltip("44RX+JG Wates, Kulon Progo Regency, Special Region of Yogyakarta");
+
+      var markerApotek6 = L.marker([-7.85485809941599, 110.16313075447472]); // you can change the coordinate
+      markerApotek6.bindPopup("Apotek Pengasih");
+      markerApotek6.addTo(map);
+      markerApotek6.openPopup();
+      markerApotek6.bindTooltip("45V7+M5 Pengasih, Kulon Progo Regency, Special Region of Yogyakarta");
+
+      var markerApotek7 = L.marker([-7.887846633126965, 110.15317439490944]); // you can change the coordinate
+      markerApotek7.bindPopup("Apotek Cangkring");
+      markerApotek7.addTo(map);
+      markerApotek7.openPopup();
+      markerApotek7.bindTooltip("4553+V5 Bendungan, Kulon Progo Regency, Special Region of Yogyakarta");
+
+      var markerApotek8 = L.marker([-7.851116966039663, 110.17205714580916]); // you can change the coordinate
+      markerApotek8.bindPopup("Apotek Arkajati");
+      markerApotek8.addTo(map);
+      markerApotek8.openPopup();
+      markerApotek8.bindTooltip("45WF+Q4W, Karang Tengah Kidul, Margosari, Kec. Pengasih, Kabupaten Kulon Progo, Daerah Istimewa Yogyakarta 55652");
+
+      var markerApotek9 = L.marker([-7.867441663393787, 110.24106502120416]); // you can change the coordinate
+      markerApotek9.bindPopup("Apotek Safira Farma");
+      markerApotek9.addTo(map);
+      markerApotek9.openPopup();
+      markerApotek9.bindTooltip("46HR+6M2, Taruban Kulon, Tuksono, Kec. Sentolo, Kabupaten Kulon Progo, Daerah Istimewa Yogyakarta 55664");
+
+      var markerApotek10 = L.marker([-7.826628715605449, 110.20432948763563]); // you can change the coordinate
+      markerApotek10.bindPopup("Apotek King Queen");
+      markerApotek10.addTo(map);
+      markerApotek10.openPopup();
+      markerApotek10.bindTooltip("5693+X5M, Jl. Pengasih, Banyunganti Kidul, Kaliagung, Kec. Sentolo, Kabupaten Kulon Progo, Daerah Istimewa Yogyakarta 55664");
+    </script>
+     
+  </body>
+</html>
